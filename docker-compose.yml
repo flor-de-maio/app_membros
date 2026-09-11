@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: flor-de-maio-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: flordemaio
+      POSTGRES_USER: flordemaio
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-flordemaio123}
+    ports:
+      - "5532:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flordemaio -d flordemaio"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: flor-de-maio-backend
+    restart: unless-stopped
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgresql://flordemaio:${POSTGRES_PASSWORD:-flordemaio123}@postgres:5432/flordemaio
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-flordemaio2026}
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES:-10080}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5001}
+      BLOB_READ_WRITE_TOKEN: ${BLOB_READ_WRITE_TOKEN:-}
+    ports:
+      - "3002:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - backend_uploads:/app/public/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        BACKEND_URL: http://backend:3001
+    container_name: flor-de-maio-frontend
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: http://backend:3001
+    ports:
+      - "5001:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  backend_uploads:

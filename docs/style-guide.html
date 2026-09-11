@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guia de Estilo — Flor de Maio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* === CORES === */
+      --background: hsl(40, 12%, 95%);
+      --foreground: hsl(210, 20%, 12%);
+
+      --card: hsl(40, 10%, 97%);
+      --card-foreground: hsl(210, 20%, 12%);
+
+      --popover: hsl(40, 12%, 95%);
+      --popover-foreground: hsl(210, 20%, 12%);
+
+      --primary: hsl(350, 30%, 60%);
+      --primary-foreground: hsl(40, 12%, 95%);
+
+      --secondary: hsl(140, 15%, 40%);
+      --secondary-foreground: hsl(40, 12%, 95%);
+
+      --muted: hsl(24, 10%, 90%);
+      --muted-foreground: hsl(210, 10%, 45%);
+
+      --accent: hsl(35, 40%, 70%);
+      --accent-foreground: hsl(210, 20%, 12%);
+
+      --destructive: hsl(0, 84.2%, 60.2%);
+      --destructive-foreground: hsl(210, 40%, 98%);
+
+      --border: hsl(24, 10%, 85%);
+      --input: hsl(24, 10%, 85%);
+      --ring: hsl(350, 30%, 60%);
+
+      /* === TIPOGRAFIA === */
+      --font-serif: "Fraunces", Georgia, serif;
+      --font-sans: "Instrument Sans", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+
+      /* === ESPAÇAMENTO === */
+      --radius: 0.125rem;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 5rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-serif);
+      margin: 0 0 var(--space-sm) 0;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 400;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-top: var(--space-2xl);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-top: var(--space-xl);
+    }
+
+    p {
+      margin: 0 0 var(--space-sm) 0;
+      max-width: 65ch;
+    }
+
+    .subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--muted-foreground);
+      margin-top: var(--space-sm);
+    }
+
+    .mono-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted-foreground);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+
+    /* === PALETA === */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .color-swatch {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .color-block {
+      height: 100px;
+      width: 100%;
+    }
+
+    .color-info {
+      padding: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+
+    .color-name {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      color: var(--foreground);
+    }
+
+    .color-value {
+      color: var(--muted-foreground);
+      margin: 0;
+    }
+
+    /* === TIPOGRAFIA === */
+    .type-sample {
+      border-top: 1px solid var(--border);
+      padding: var(--space-md) 0;
+    }
+
+    .type-sample:first-of-type {
+      border-top: none;
+    }
+
+    .font-serif { font-family: var(--font-serif); }
+    .font-sans { font-family: var(--font-sans); }
+    .font-mono { font-family: var(--font-mono); }
+
+    .text-hero {
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    .text-display {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .text-body {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .text-small {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .italic { font-style: italic; }
+    .text-primary { color: var(--primary); }
+
+    /* === COMPONENTES === */
+    .component-grid {
+      display: grid;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    .component-box {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+      background: var(--card);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--secondary-foreground);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted-foreground);
+      border: 1px solid var(--border);
+    }
+
+    .input {
+      width: 100%;
+      background: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem 0.8rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--foreground);
+    }
+
+    .input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--ring);
+    }
+
+    .card {
+      background: var(--muted);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+    }
+
+    .card-title {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-meta {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .card-text {
+      font-size: 0.875rem;
+      color: var(--foreground);
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    /* === UTILITÁRIOS === */
+    .tokens-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-md);
+      font-size: 0.875rem;
+    }
+
+    .tokens-table th,
+    .tokens-table td {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-sans);
+    }
+
+    .tokens-table th {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-foreground);
+      font-weight: 500;
+    }
+
+    .tokens-table code {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: var(--muted);
+      padding: 0.15rem 0.4rem;
+      border-radius: var(--radius);
+    }
+
+    footer {
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="mono-label">Guia de Estilo</span>
+      <h1>Flor de Maio</h1>
+      <p class="subtitle">Clube de leitura — Vitória da Conquista, BA</p>
+    </header>
+
+    <section>
+      <span class="mono-label">Identidade Visual</span>
+      <h2>Paleta de Cores</h2>
+      <p>As cores são definidas como tokens HSL no CSS, permitindo temas claro/escuro. A paleta é terrosa, com rosa queimado como cor primária e verde acinzentado como secundária.</p>
+
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--background);"></div>
+          <div class="color-info">
+            <div class="color-name">Background</div>
+            <p class="color-value">hsl(40, 12%, 95%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--foreground);"></div>
+          <div class="color-info">
+            <div class="color-name">Foreground</div>
+            <p class="color-value">hsl(210, 20%, 12%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--primary);"></div>
+          <div class="color-info">
+            <div class="color-name">Primary</div>
+            <p class="color-value">hsl(350, 30%, 60%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--secondary);"></div>
+          <div class="color-info">
+            <div class="color-name">Secondary</div>
+            <p class="color-value">hsl(140, 15%, 40%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--accent);"></div>
+          <div class="color-info">
+            <div class="color-name">Accent</div>
+            <p class="color-value">hsl(35, 40%, 70%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--muted);"></div>
+          <div class="color-info">
+            <div class="color-name">Muted</div>
+            <p class="color-value">hsl(24, 10%, 90%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--muted-foreground);"></div>
+          <div class="color-info">
+            <div class="color-name">Muted Foreground</div>
+            <p class="color-value">hsl(210, 10%, 45%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--border);"></div>
+          <div class="color-info">
+            <div class="color-name">Border</div>
+            <p class="color-value">hsl(24, 10%, 85%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--destructive);"></div>
+          <div class="color-info">
+            <div class="color-name">Destructive</div>
+            <p class="color-value">hsl(0, 84%, 60%)</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-block" style="background: var(--card);"></div>
+          <div class="color-info">
+            <div class="color-name">Card</div>
+            <p class="color-value">hsl(40, 10%, 97%)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="mono-label">Tipografia</span>
+      <h2>Fontes</h2>
+      <p>Três famílias tipográficas definem a voz do site: serifada para títulos e destaques editoriais, sans-serif para corpo de texto e monoespaçada para metadados e rótulos.</p>
+
+      <div class="type-sample">
+        <span class="mono-label">Serif — Fraunces</span>
+        <p class="font-serif text-hero">Flor de <span class="italic text-primary">Maio</span></p>
+        <p class="font-serif text-display italic">Leituras que florescem no tempo.</p>
+      </div>
+
+      <div class="type-sample">
+        <span class="mono-label">Sans — Instrument Sans</span>
+        <p class="font-sans text-body">O Flor de Maio nasceu do desejo de criar um espaço íntimo para leituras compartilhadas. Nos encontramos mensalmente para discutir um livro escolhido em conjunto.</p>
+      </div>
+
+      <div class="type-sample">
+        <span class="mono-label">Mono — JetBrains Mono</span>
+        <p class="font-mono text-small">Sobre o clube · Integrantes · Participantes</p>
+        <p class="font-mono" style="font-size: 0.8rem; color: var(--muted-foreground);">Favorito: <span class="italic">Jantar Secreto</span></p>
+      </div>
+    </section>
+
+    <section>
+      <span class="mono-label">Tokens de Design</span>
+      <h2>Variáveis CSS</h2>
+      <p>Essas são as variáveis usadas no projeto. Copie para reutilizar em outras páginas ou materiais.</p>
+
+      <table class="tokens-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valor</th>
+            <th>Uso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--background</code></td><td>hsl(40, 12%, 95%)</td><td>Fundo da página</td></tr>
+          <tr><td><code>--foreground</code></td><td>hsl(210, 20%, 12%)</td><td>Texto principal</td></tr>
+          <tr><td><code>--primary</code></td><td>hsl(350, 30%, 60%)</td><td>Botões, destaques, links</td></tr>
+          <tr><td><code>--primary-foreground</code></td><td>hsl(40, 12%, 95%)</td><td>Texto sobre primary</td></tr>
+          <tr><td><code>--secondary</code></td><td>hsl(140, 15%, 40%)</td><td>Botões secundários</td></tr>
+          <tr><td><code>--muted</code></td><td>hsl(24, 10%, 90%)</td><td>Fundos de cards e inputs</td></tr>
+          <tr><td><code>--accent</code></td><td>hsl(35, 40%, 70%)</td><td>Elementos de destaque suave</td></tr>
+          <tr><td><code>--border</code></td><td>hsl(24, 10%, 85%)</td><td>Bordas e divisores</td></tr>
+          <tr><td><code>--ring</code></td><td>hsl(350, 30%, 60%)</td><td>Foco de inputs</td></tr>
+          <tr><td><code>--radius</code></td><td>0.125rem</td><td>Bordas levemente arredondadas</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <span class="mono-label">Componentes</span>
+      <h2>Botões, Inputs e Cards</h2>
+      <p>Estilos padrão dos componentes usados nas páginas de resenhas, comentários e galeria.</p>
+
+      <div class="component-grid">
+        <div class="component-box">
+          <span class="mono-label">Botões</span>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem;">
+            <button class="btn btn-primary">Publicar resenha</button>
+            <button class="btn btn-secondary">Entrar</button>
+            <button class="btn btn-ghost">Cancelar</button>
+          </div>
+        </div>
+
+        <div class="component-box">
+          <span class="mono-label">Input</span>
+          <input type="text" class="input" placeholder="Seu nome" style="max-width: 320px; margin-top: 0.5rem;">
+        </div>
+
+        <div class="component-box">
+          <span class="mono-label">Card de Resenha</span>
+          <div class="card" style="margin-top: 0.5rem;">
+            <div class="card-title">Ana Clara</div>
+            <div class="card-meta">4.5/5</div>
+            <p class="card-text">Uma leitura envolvente do início ao fim. O desfecho me surpreendeu bastante.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="mono-label">Tom de Voz</span>
+      <h2>Como escrever para o Flor de Maio</h2>
+      <ul style="padding-left: 1.25rem; color: var(--foreground);">
+        <li style="margin-bottom: 0.5rem;">Tom acolhedor, íntimo e literário.</li>
+        <li style="margin-bottom: 0.5rem;">Use itálico para títulos de livros e frases de destaque.</li>
+        <li style="margin-bottom: 0.5rem;">Metadados (datas, notas, rótulos) em monoespaçada, caixa alta e com letras espaçadas.</li>
+        <li style="margin-bottom: 0.5rem;">Mantenha espaços generosos entre seções — layout editorial e respirado.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Guia de Estilo · Flor de Maio · Clube de Leitura</p>
+    </footer>
+  </div>
+</body>
+</html>

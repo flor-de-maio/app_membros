@@ -1,0 +1,65 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: flor-de-maio-db-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: flordemaio
+      POSTGRES_USER: flordemaio
+      POSTGRES_PASSWORD: flordemaio123
+    ports:
+      - "5532:5432"
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flordemaio -d flordemaio"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: flor-de-maio-backend-dev
+    restart: unless-stopped
+    command: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 3001 --reload"
+    environment:
+      PORT: 3001
+      DATABASE_URL: postgresql://flordemaio:flordemaio123@postgres:5432/flordemaio
+      ADMIN_PASSWORD: flordemaio2026
+      JWT_SECRET: dev-only-insecure-secret-change-me
+      JWT_EXPIRE_MINUTES: 10080
+      CORS_ORIGINS: http://localhost:5001
+    ports:
+      - "3002:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/alembic:/app/alembic
+      - backend_uploads_dev:/app/public/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: deps
+    container_name: flor-de-maio-frontend-dev
+    restart: unless-stopped
+    command: npm run dev
+    environment:
+      BACKEND_URL: http://backend:3001
+    ports:
+      - "5001:5000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data_dev:
+  backend_uploads_dev:
