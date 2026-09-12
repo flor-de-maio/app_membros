@@ -24,7 +24,11 @@ export default function MemberHeader({
   return (
     <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/perfil" className="flex items-center gap-2 min-w-0" data-testid="link-perfil-header">
+        <Link
+          href="/perfil"
+          className="flex items-center gap-2 min-w-0 pl-1 pr-3 py-1 rounded-full hover:bg-muted transition-colors"
+          data-testid="link-perfil-header"
+        >
           {fotoUrl ? (
             <img
               src={fotoUrl}
@@ -40,11 +44,11 @@ export default function MemberHeader({
             {nome}
           </span>
         </Link>
-        <div className="flex items-center gap-4 flex-shrink-0">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {isAdmin && (
             <Link
               href="/admin"
-              className="flex items-center gap-1.5 text-muted-foreground hover:text-primary text-xs font-sans transition-colors"
+              className="flex items-center gap-1.5 text-muted-foreground hover:text-primary hover:border-primary/40 text-xs font-sans border border-border rounded-full px-3 py-1.5 transition-colors"
               data-testid="link-admin"
             >
               <Shield className="w-3.5 h-3.5" />
@@ -53,7 +57,7 @@ export default function MemberHeader({
           )}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-primary text-xs font-sans transition-colors"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-primary text-xs font-sans px-2 py-1.5 transition-colors"
             data-testid="button-logout-member"
           >
             <LogOut className="w-3.5 h-3.5" />

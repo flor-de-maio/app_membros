@@ -59,14 +59,17 @@ function CheckinComposer({ desafio }: { desafio: Desafio }) {
   });
 
   return (
-    <div className="bg-card border border-border rounded-sm p-4 flex flex-col gap-3">
-      <h2 className="font-serif text-base text-card-foreground">Check-in de hoje</h2>
+    <div className="bg-card border border-border rounded-2xl p-5 flex flex-col gap-3">
+      <div className="flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+        <h2 className="font-serif text-base text-card-foreground">Check-in de hoje</h2>
+      </div>
 
       <Textarea
         value={conteudo}
         onChange={(e) => setConteudo(e.target.value)}
         placeholder="Conte o que você está lendo hoje..."
-        className="resize-none"
+        className="resize-none rounded-xl"
         rows={3}
         data-testid="textarea-checkin"
       />
@@ -81,7 +84,7 @@ function CheckinComposer({ desafio }: { desafio: Desafio }) {
       />
       {imagemPreview ? (
         <div className="relative w-24">
-          <img src={imagemPreview} alt="Preview" className="w-24 h-24 object-cover rounded-sm border border-border" />
+          <img src={imagemPreview} alt="Preview" className="w-24 h-24 object-cover rounded-xl border border-border" />
           <button
             type="button"
             onClick={() => handleImagemChange(null)}
@@ -95,7 +98,7 @@ function CheckinComposer({ desafio }: { desafio: Desafio }) {
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="flex items-center gap-1.5 self-start font-sans text-xs text-muted-foreground hover:text-foreground border border-dashed border-border rounded-sm px-2.5 py-1.5"
+          className="flex items-center justify-center gap-1.5 w-full font-sans text-xs text-muted-foreground hover:text-foreground hover:border-primary/40 border border-border rounded-full px-4 py-2.5 transition-colors"
           data-testid="button-adicionar-imagem-checkin"
         >
           <ImagePlus className="w-3.5 h-3.5" />
@@ -106,8 +109,7 @@ function CheckinComposer({ desafio }: { desafio: Desafio }) {
       <Button
         onClick={() => mutation.mutate()}
         disabled={mutation.isPending || !conteudo.trim() || !imagem}
-        size="sm"
-        className="self-end"
+        className="w-full rounded-full"
         data-testid="button-fazer-checkin"
       >
         {mutation.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : "Fazer check-in"}
@@ -120,17 +122,20 @@ function CheckinComposer({ desafio }: { desafio: Desafio }) {
 export function ReadingRatsCard({ desafio }: { desafio: Desafio }) {
   return (
     <div className="flex flex-col gap-4" data-testid={`card-desafio-${desafio.id}`}>
-      <div className="bg-card border border-border rounded-sm p-4 flex flex-col gap-2">
-        <p className="font-serif text-lg text-card-foreground">{desafio.titulo}</p>
-        {desafio.descricao && <p className="font-sans text-sm text-muted-foreground">{desafio.descricao}</p>}
-        <p className="mono-label mt-1">
+      <div className="bg-primary/10 rounded-2xl p-5 flex flex-col gap-2">
+        <p className="font-serif text-lg font-medium text-foreground">Normas e Prêmios</p>
+        <p className="font-sans text-sm text-foreground/80 leading-relaxed">
+          {desafio.descricao || "Poste uma foto da sua leitura do dia e ganhe pontos adicionais para subir no ranking."}
+        </p>
+        <span className="inline-flex items-center gap-1.5 self-start mt-1 font-mono text-[10px] uppercase tracking-widest text-secondary-foreground bg-secondary/90 rounded-full px-3 py-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-secondary-foreground/70" />
           +{desafio.pontos_recompensa} pts por check-in
           {desafio.duracao_dias ? ` · ${desafio.duracao_dias} dias` : " · sem prazo"}
-        </p>
+        </span>
       </div>
 
       {desafio.ja_fez_checkin_hoje ? (
-        <div className="bg-card border border-border rounded-sm p-4 flex items-center gap-2">
+        <div className="bg-card border border-border rounded-2xl p-5 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
           <p className="font-sans text-sm text-muted-foreground">Check-in de hoje já feito. Volte amanhã!</p>
         </div>
@@ -139,7 +144,7 @@ export function ReadingRatsCard({ desafio }: { desafio: Desafio }) {
       )}
 
       {desafio.ranking && desafio.ranking.length > 0 && (
-        <div className="bg-card border border-border rounded-sm p-4 flex flex-col gap-2">
+        <div className="bg-card border border-border rounded-2xl p-5 flex flex-col gap-2">
           <p className="mono-label flex items-center gap-1.5">
             <Trophy className="w-3.5 h-3.5" />
             Ranking de check-ins
@@ -162,7 +167,7 @@ export function ReadingRatsCard({ desafio }: { desafio: Desafio }) {
       )}
 
       {desafio.fotos && desafio.fotos.length > 0 && (
-        <div className="bg-card border border-border rounded-sm p-4 flex flex-col gap-2">
+        <div className="bg-card border border-border rounded-2xl p-5 flex flex-col gap-2">
           <p className="mono-label flex items-center gap-1.5">
             <Camera className="w-3.5 h-3.5" />
             Fotos recentes
@@ -174,7 +179,7 @@ export function ReadingRatsCard({ desafio }: { desafio: Desafio }) {
                   src={f.imagem_url}
                   alt={`Check-in de ${f.nome}`}
                   title={f.nome}
-                  className="w-full h-full object-cover rounded-sm border border-border"
+                  className="w-full h-full object-cover rounded-xl border border-border"
                 />
               </div>
             ))}

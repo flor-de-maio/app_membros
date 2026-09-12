@@ -37,9 +37,11 @@ export default function ReadingRatsPage() {
 
       <main className="max-w-2xl mx-auto px-4 py-6 flex flex-col gap-6">
         <div className="flex items-center gap-3">
-          <CalendarCheck className="w-5 h-5 text-primary" />
+          <div className="w-11 h-11 rounded-full bg-accent/20 border border-border flex items-center justify-center flex-shrink-0">
+            <CalendarCheck className="w-5 h-5 text-primary" />
+          </div>
           <div>
-            <h1 className="font-serif text-xl text-foreground">Reading Rats</h1>
+            <h1 className="font-serif text-xl font-semibold text-foreground">Reading Rats</h1>
             <p className="font-sans text-sm text-muted-foreground">Poste uma foto lendo todo dia e ganhe pontos.</p>
           </div>
         </div>

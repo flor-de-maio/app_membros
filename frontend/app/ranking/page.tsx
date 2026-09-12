@@ -54,7 +54,7 @@ export default function RankingPage() {
           </p>
         </div>
 
-        <div className="bg-card border border-border rounded-sm p-5 flex flex-col gap-4">
+        <div className="bg-card border border-border rounded-2xl p-5 flex flex-col gap-4">
           <h2 className="font-serif text-base text-card-foreground">Como ganhar pontos</h2>
           <div className="flex items-start gap-3">
             <CalendarCheck className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
@@ -118,7 +118,7 @@ export default function RankingPage() {
                 return (
                   <div
                     key={entry.usuario_id}
-                    className={`flex items-center justify-between gap-2 px-4 py-3 rounded-sm border ${
+                    className={`flex items-center justify-between gap-2 px-4 py-3 rounded-xl border ${
                       isVoce ? "bg-accent/20 border-primary/40" : "bg-card border-border"
                     }`}
                     data-testid={`row-ranking-${posicao}`}

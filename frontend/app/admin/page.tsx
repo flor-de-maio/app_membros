@@ -69,7 +69,7 @@ function MembrosTab() {
       {membros.map((m) => (
         <div
           key={m.id}
-          className="flex items-center justify-between gap-3 px-4 py-3 rounded-sm border border-border bg-card"
+          className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl border border-border bg-card"
           data-testid={`row-membro-${m.id}`}
         >
           <div className="min-w-0">
@@ -135,14 +135,14 @@ function RankingTab() {
   });
 
   return (
-    <div className="bg-card border border-border rounded-sm p-5 flex flex-col gap-3">
+    <div className="bg-card border border-border rounded-2xl p-5 flex flex-col gap-3">
       <h2 className="font-serif text-base text-card-foreground">Zerar ranking</h2>
       <p className="font-sans text-sm text-muted-foreground">
         Zera a pontuação de todos os membros para 0. Use no início de um novo ciclo.
       </p>
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="destructive" className="self-start gap-2" data-testid="button-zerar-ranking">
+          <Button variant="destructive" className="self-start gap-2 rounded-full" data-testid="button-zerar-ranking">
             <RotateCcw className="w-4 h-4" />
             Zerar ranking
           </Button>
@@ -191,8 +191,10 @@ export default function AdminPage() {
 
       <main className="max-w-2xl mx-auto px-4 py-6 flex flex-col gap-6">
         <div className="flex items-center gap-3">
-          <Shield className="w-5 h-5 text-primary" />
-          <h1 className="font-serif text-xl text-foreground">Administração</h1>
+          <div className="w-11 h-11 rounded-full bg-accent/20 border border-border flex items-center justify-center flex-shrink-0">
+            <Shield className="w-5 h-5 text-primary" />
+          </div>
+          <h1 className="font-serif text-xl font-semibold text-foreground">Administração</h1>
         </div>
 
         <Tabs defaultValue="membros">
