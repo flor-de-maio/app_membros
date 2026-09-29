@@ -5,28 +5,24 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const CAROUSEL_IMAGES = [
   {
-    url: "https://images.unsplash.com/photo-1611994138603-64e4e8a62451?w=800&h=600&fit=crop&auto=format",
-    alt: "Livro branco sobre flores amarelas",
+    url: "/images/galeria-mesa-velas.jpg",
+    alt: "Mesa de jantar decorada à luz de velas em um encontro do clube",
   },
   {
-    url: "https://images.unsplash.com/photo-1630343710506-89f8b9f21d31?w=800&h=600&fit=crop&auto=format",
-    alt: "Pessoa lendo livro em ambiente aconchegante",
+    url: "/images/galeria-livro-flores.jpg",
+    alt: "Livro e arranjo de flores sobre a mesa do encontro",
   },
   {
-    url: "https://images.unsplash.com/photo-1603831905217-8c2f485a2e20?w=800&h=600&fit=crop&auto=format",
-    alt: "Mulher lendo livro",
+    url: "/images/galeria-selfie.jpg",
+    alt: "Participantes do Flor de Maio reunidas para uma foto",
   },
   {
-    url: "https://images.unsplash.com/photo-1598024055266-e772a5f8c128?w=800&h=600&fit=crop&auto=format",
-    alt: "Mulher de camisa vermelha lendo",
+    url: "/images/galeria-flatlay.jpg",
+    alt: "Máquina de escrever e machado sobre as capas dos livros lidos",
   },
   {
-    url: "https://images.unsplash.com/photo-1588287028941-99e3c7601d0e?w=800&h=600&fit=crop&auto=format",
-    alt: "Flores sobre papel impresso",
-  },
-  {
-    url: "https://images.unsplash.com/photo-1725582204163-46d1f246ecd6?w=800&h=600&fit=crop&auto=format",
-    alt: "Pessoa sentada com livro e café",
+    url: "/images/galeria-noite.jpg",
+    alt: "Participante fantasiada em um encontro noturno do clube",
   },
 ];
 

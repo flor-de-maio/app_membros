@@ -1,43 +1,15 @@
 const PARTICIPACOES = [
-  {
-    month: "Agosto 2025",
-    book: "A Hora da Estrela",
-    author: "Clarice Lispector",
-    members: 14,
-    score: "4.8/5",
-    note: "Uma leitura tocante sobre existência e invisibilidade. Debatemos por mais de três horas.",
-  },
-  {
-    month: "Setembro 2025",
-    book: "Torto Arado",
-    author: "Itamar Vieira Junior",
-    members: 17,
-    score: "4.9/5",
-    note: "Vozes femininas, terra e resistência. Encontro marcante com discussões sobre identidade e memória.",
-  },
-  {
-    month: "Outubro 2025",
-    book: "O Alienista",
-    author: "Machado de Assis",
-    members: 12,
-    score: "4.5/5",
-    note: "Ironia, poder e loucura — Machado em seu melhor. Risadas e reflexões em igual medida.",
-  },
-  {
-    month: "Novembro 2025",
-    book: "Americanah",
-    author: "Chimamanda Ngozi Adichie",
-    members: 19,
-    score: "5.0/5",
-    note: "Diáspora, raça e amor. Uma das leituras mais ricas do ano, com perspectivas muito diversas.",
-  },
+  { month: "Fevereiro 2026", book: "Jantar Secreto", author: "Raphael Montes" },
+  { month: "Junho 2025", book: "A Guerra da Papoula", author: "R.F. Kuang" },
+  { month: "Maio 2025", book: "Tudo Que Deixamos Inacabado", author: "Rebecca Yarros" },
+  { month: "Março 2025", book: "Orgulho e Preconceito", author: "Jane Austen" },
 ];
 
 const PASSOS = [
-  "Entre em contato pelo formulário ou WhatsApp",
-  "Receba o livro do mês por e-mail",
-  "Leia no seu ritmo — sem obrigação de terminar",
-  "Apareça no encontro e compartilhe sua leitura",
+  "Preencha o formulário",
+  "Aguarde nosso contato",
+  "Leia no seu ritmo — sem a obrigação de terminar",
+  "Apareça no encontro e compartilhe suas impressões",
 ];
 
 const Participacoes = () => {
@@ -58,16 +30,12 @@ const Participacoes = () => {
               className="p-6 bg-muted rounded-sm transition-transform duration-200 hover:-translate-y-0.5"
               data-testid={`card-participacao-${p.book}`}
             >
-              <div className="flex items-start justify-between mb-3">
-                <span className="mono-label">{p.month}</span>
-                <span className="font-mono text-xs font-medium text-primary">{p.score}</span>
-              </div>
+              <span className="mono-label block mb-3">{p.month}</span>
               <h3 className="font-sans text-sm font-semibold mb-0.5 text-foreground">{p.book}</h3>
-              <p className="font-serif italic text-sm text-muted-foreground mb-3">{p.author}</p>
-              <p className="font-sans text-sm text-foreground/80 leading-relaxed m-0">{p.note}</p>
-              <div className="mt-4">
-                <span className="mono-label">{p.members} participantes</span>
-              </div>
+              <p className="font-serif italic text-sm text-muted-foreground mb-4">{p.author}</p>
+              <p className="font-serif italic text-sm text-foreground/50 leading-relaxed m-0">
+                "Depoimento em breve."
+              </p>
             </article>
           ))}
         </div>
@@ -79,9 +47,14 @@ const Participacoes = () => {
               Venha ler com a gente
             </h3>
             <p className="font-sans text-sm leading-relaxed text-secondary-foreground/80 m-0">
-              A participação é gratuita e aberta a todos. O próximo encontro acontece na{" "}
-              <strong className="text-accent">primeira sexta de cada mês</strong>, às 19h — de forma híbrida
-              (presencial em Vitória da Conquista e online via Google Meet).
+              Nossas vagas são limitadas e abrimos a seleção de novas participantes duas vezes ao ano. Clique
+              em{" "}
+              <a href="#contato" className="text-accent underline underline-offset-2 hover:opacity-80">
+                Participar
+              </a>{" "}
+              e preencha o formulário manifestando seu interesse em fazer parte do Flor de Maio. Todas as
+              meninas que preencherem o formulário serão incluídas em nossa lista de prioridade e serão as
+              primeiras a serem consideradas quando novas vagas forem abertas. 🌷
             </p>
           </div>
           <ol className="space-y-4">

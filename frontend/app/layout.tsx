@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Flor de Maio",
   description:
-    "Clube de leitura de Vitória da Conquista. Um lugar para ler devagar, trocar ideias e voltar sempre.",
+    "Flor de Maio é um clube de leitura para adoráveis mulheres em Vitória da Conquista, BA. Encontros mensais, amizades genuínas e leituras que tocam o coração.",
 };
 
 export const viewport: Viewport = {

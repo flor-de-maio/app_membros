@@ -3,10 +3,10 @@ const HeroSection = () => {
     <header className="relative h-screen min-h-[600px] flex items-end overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1651643367896-43a10f05bc69?w=1600&h=1000&fit=crop&auto=format"
-          alt="Campo de flores — identidade visual do clube"
+          src="/images/hero-grupo-gala.jpg"
+          alt="Participantes do Flor de Maio reunidas em um encontro do clube"
           className="w-full h-full object-cover"
-          style={{ objectPosition: "center 40%" }}
+          style={{ objectPosition: "center 45%" }}
         />
         <div
           className="absolute inset-0"
@@ -18,7 +18,7 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-6 pb-20 w-full">
-        <span className="mono-label block mb-4 !text-accent">Est. 2022 · Vitória da Conquista, BA</span>
+        <span className="mono-label block mb-4 !text-accent">Est. 2025 · Vitória da Conquista, BA</span>
         <h1
           className="font-serif mb-5 text-card"
           style={{ fontSize: "clamp(3rem, 10vw, 6.5rem)", fontWeight: 400, lineHeight: 0.95, letterSpacing: "-0.03em" }}
@@ -26,7 +26,7 @@ const HeroSection = () => {
           Flor de <span className="italic text-primary">Maio</span>
         </h1>
         <p className="font-serif italic text-xl mb-8 max-w-lg text-card/75 leading-relaxed">
-          Leituras que florescem no tempo.
+          Clube de Leitura para adoráveis mulheres.
         </p>
         <a
           href="#participar"
