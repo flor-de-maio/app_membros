@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from .blob_storage import UPLOADS_DIR
 from .config import settings
-from .routers import auth_usuario, desafios, ranking, usuarios
+from .routers import auth_usuario, biblioteca, desafios, ranking, usuarios
 
 app = FastAPI(title="Flor de Maio API")
 
@@ -69,3 +69,4 @@ app.include_router(auth_usuario.router)
 app.include_router(usuarios.router)
 app.include_router(ranking.router)
 app.include_router(desafios.router)
+app.include_router(biblioteca.router)

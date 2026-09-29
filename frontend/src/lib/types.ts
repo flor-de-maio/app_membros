@@ -57,6 +57,21 @@ export interface Desafio {
   ja_fez_checkin_hoje: boolean;
 }
 
+/* ─── Biblioteca (livros do mês + avaliações) ─── */
+
+export interface Livro {
+  id: string;
+  titulo: string;
+  autor: string | null;
+  mes_referencia: string;
+  capa_url: string | null;
+  link: string | null;
+  created_at: string;
+  media_estrelas: number | null;
+  total_avaliacoes: number;
+  minha_avaliacao: number | null;
+}
+
 export interface LoginResponse {
   success: boolean;
   token: string;

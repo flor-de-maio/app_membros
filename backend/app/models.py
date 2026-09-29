@@ -75,6 +75,48 @@ class Desafio(Base):
     )
 
 
+class Livro(Base):
+    """A "livro do mês" entry in the club library. Created by an admin with a
+    cover image and an optional external link; rated 1-5 stars by members."""
+
+    __tablename__ = "livros"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), primary_key=True, server_default=text("gen_random_uuid()")
+    )
+    titulo: Mapped[str] = mapped_column(Text, nullable=False)
+    autor: Mapped[str | None] = mapped_column(Text, nullable=True)
+    # Free text on purpose (e.g. "Fevereiro 2026") - the club picks books
+    # month by month and the label is whatever the admin types.
+    mes_referencia: Mapped[str] = mapped_column(Text, nullable=False)
+    capa_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    link: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[object] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=text("now()")
+    )
+
+
+class LivroAvaliacao(Base):
+    __tablename__ = "livro_avaliacoes"
+    __table_args__ = (
+        UniqueConstraint("livro_id", "usuario_id", name="uq_livro_avaliacoes_livro_usuario"),
+    )
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), primary_key=True, server_default=text("gen_random_uuid()")
+    )
+    livro_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("livros.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    usuario_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("usuarios.id", ondelete="CASCADE"), nullable=False
+    )
+    estrelas: Mapped[int] = mapped_column(Integer, nullable=False)
+    created_at: Mapped[object] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=text("now()")
+    )
+
+
 class DesafioCheckin(Base):
     __tablename__ = "desafio_checkins"
     __table_args__ = (

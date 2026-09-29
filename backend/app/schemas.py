@@ -84,6 +84,27 @@ class PostRead(BaseModel):
     model_config = {"from_attributes": True}
 
 
+# ─── Biblioteca (livros do mês + avaliações) ───
+class LivroRead(BaseModel):
+    id: str
+    titulo: str
+    autor: Optional[str] = None
+    mes_referencia: str
+    capa_url: Optional[str] = None
+    link: Optional[str] = None
+    created_at: object
+    # Aggregates computed per request from livro_avaliacoes.
+    media_estrelas: Optional[float] = None
+    total_avaliacoes: int = 0
+    minha_avaliacao: Optional[int] = None
+
+    model_config = {"from_attributes": True}
+
+
+class LivroAvaliacaoCreate(BaseModel):
+    estrelas: Annotated[int, Field(ge=1, le=5)]
+
+
 # ─── Desafios ("Reading Rats" daily check-in) ───
 class DesafioRead(BaseModel):
     id: str
