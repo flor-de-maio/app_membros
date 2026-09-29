@@ -1,7 +1,14 @@
 fastapi>=0.111
 uvicorn[standard]>=0.29
 httpx>=0.27
-sqlalchemy>=2.0
+# The [asyncio] extra pulls in `greenlet`, which SQLAlchemy's async engine
+# imports at runtime. This must be explicit: SQLAlchemy 2.1 dropped greenlet
+# from its base install_requires, so a clean build resolving "sqlalchemy>=2.0"
+# to 2.1.x installs no greenlet and every route 500s at import time with
+# "The SQLAlchemy asyncio module requires that the Python 'greenlet' library
+# is installed". Pinned below 2.1 because everything here was built and
+# verified against 2.0.x.
+sqlalchemy[asyncio]>=2.0,<2.1
 asyncpg>=0.29
 alembic>=1.13
 pydantic>=2.6
